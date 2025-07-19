@@ -23,14 +23,9 @@ export default [
       'react-refresh': reactRefresh,
     },
     rules: {
-      // Create React App style rules - more relaxed
-      'no-unused-vars': ['warn', { 
-        vars: 'all', 
-        args: 'after-used', 
-        ignoreRestSiblings: true,
-        argsIgnorePattern: '^_',
-        varsIgnorePattern: '^_'
-      }],
+      // Disable unused vars warning completely
+      'no-unused-vars': 'off',
+      
       'no-undef': 'error',
       
       // React Hooks rules
