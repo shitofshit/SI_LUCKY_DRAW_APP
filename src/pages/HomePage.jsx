@@ -1,38 +1,31 @@
-import LuckyDrawCard from '../components/LuckyDrawCard'
+import { Outlet } from "react-router-dom";
+import logo from "../assets/SI_LOGO.png";
 
 function HomePage() {
   return (
-    <div className='h-screen w-full overflow-auto' 
-         style={{background: 'linear-gradient(45deg, #ff6b6b, #ee5a24)'}}>
-      
-      {/* Grid Container */}
-      <div className="grid p-4 gap-4 h-full">
-        <div className="col-12 md:col-6 lg:col-4">
-          <LuckyDrawCard title="Lucky Draw 1" />
-        </div>
-        
-        <div className="col-12 md:col-6 lg:col-4">
-          <LuckyDrawCard title="Lucky Draw 2" />
-        </div>
-        
-        <div className="col-12 md:col-6 lg:col-4">
-          <LuckyDrawCard title="Lucky Draw 3" />
-        </div>
-        
-        <div className="col-12 md:col-6 lg:col-4">
-          <LuckyDrawCard title="Lucky Draw 4" />
-        </div>
-        
-        <div className="col-12 md:col-6 lg:col-4">
-          <LuckyDrawCard title="Lucky Draw 5" />
-        </div>
-        
-        <div className="col-12 md:col-6 lg:col-4">
-          <LuckyDrawCard title="Lucky Draw 6" />
-        </div>
+    <div
+      className="flex flex-column h-screen w-full align-items-center"
+      style={{}}
+    >
+      {/* //image container */}
+      <div
+        className="flex flex-1 justify-content-center mb-2"
+        style={{ width: "20rem", maxHeight: "8rem" }}
+      >
+        <img src={logo} className="w-full h-full" alt="logo" />
       </div>
+      {/* title */}
+      <div
+        className="text-5xl font-medium"
+        style={{ fontFamily: '"Playfair Display", "Times New Roman", serif' }}
+      >
+        ANNUAL DINNER LUCKY DRAW
+      </div>
+
+      {/* Outlet for the lucky draw pages */}
+      <Outlet />
     </div>
-  )
+  );
 }
 
-export default HomePage
+export default HomePage;
