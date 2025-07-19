@@ -4,8 +4,8 @@ import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import "primeflex/primeflex.css";
 import "./index.css";
-import App from "./App.jsx";
+import HomePage from "./pages/HomePage.jsx";
 
 createRoot(document.getElementById("root")).render(
-  <App />
+  <HomePage />
 );
