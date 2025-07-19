@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { combineReducers } from '@reduxjs/toolkit';
-import uiSlice from './slices/uiSlice';
+import uiSlice from './slices/uiSlice.jsx';
 
 const persistConfig = {
   key: 'root',
