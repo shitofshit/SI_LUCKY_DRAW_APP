@@ -4,29 +4,29 @@ import { useSelector, useDispatch } from "react-redux";
 import { startDraw, setWinner } from "../redux/slices/participantsSlice.jsx";
 import LuckyDrawGrid from "../components/LuckyDrawGrid.jsx";
 
-function Page1() {
+function Page1({ winnerCount = 1, prizeName = "PRIZE" }) {
   const dispatch = useDispatch();
   const { eligibleParticipants, currentDraw } = useSelector(
     (state) => state.participants
   );
 
-  const [rollingNames, setRollingNames] = useState(Array(7));
+  const [rollingNames, setRollingNames] = useState(Array(winnerCount));
   const [isRolling, setIsRolling] = useState(false);
   const [finalWinners, setFinalWinners] = useState([]);
 
-  // Function to get 7 different random participants for rolling
+  // Function to get different random participants for rolling
   const getRandomParticipants = () => {
-    if (eligibleParticipants.length < 7) {
+    if (eligibleParticipants.length < winnerCount) {
       const available = [...eligibleParticipants];
-      while (available.length < 7) {
-        available.push(...eligibleParticipants.slice(0, 7 - available.length));
+      while (available.length < winnerCount) {
+        available.push(...eligibleParticipants.slice(0, winnerCount - available.length));
       }
-      return available.slice(0, 7).map((p) => p.name);
+      return available.slice(0, winnerCount).map((p) => p.name);
     }
 
-    // Get 7 different random articipants
+    // Get different random participants
     const shuffled = [...eligibleParticipants].sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, 7).map((p) => p.name);
+    return shuffled.slice(0, winnerCount).map((p) => p.name);
   };
 
   // Rolling animation effect
@@ -38,12 +38,12 @@ function Page1() {
       }, 100);
     }
     return () => clearInterval(interval);
-  }, [isRolling, eligibleParticipants]);
+  }, [isRolling, eligibleParticipants, winnerCount]);
 
   const handleDraw = () => {
-    if (eligibleParticipants.length < 7) {
+    if (eligibleParticipants.length < winnerCount) {
       alert(
-        `Not enough participants! Need at least 7, but only ${eligibleParticipants.length} available.`
+        `Not enough participants! Need at least ${winnerCount}, but only ${eligibleParticipants.length} available.`
       );
       return;
     }
@@ -60,16 +60,16 @@ function Page1() {
         setRollingNames(getRandomParticipants());
       }, 300); // Slower rolling
 
-      // Stop rolling and select 7 different winners after 2 more seconds
+      // Stop rolling and select different winners after 2 more seconds
       setTimeout(() => {
         clearInterval(slowInterval);
         setIsRolling(false);
 
-        // Select 7 different winners
+        // Select different winners
         const shuffled = [...eligibleParticipants].sort(
           () => 0.5 - Math.random()
         );
-        const winners = shuffled.slice(0, 7);
+        const winners = shuffled.slice(0, winnerCount);
 
         // Show winner names in the divs
         const winnerNames = winners.map((winner) => winner.name);
@@ -113,7 +113,7 @@ function Page1() {
                 filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.3))",
               }}
             >
-              LV BAG
+              {prizeName}
             </div>
 
             <div
@@ -136,7 +136,7 @@ function Page1() {
                 fontWeight: "600",
               }}
             >
-              7 LUCKY WINNERS
+              {winnerCount} LUCKY WINNER{winnerCount > 1 ? 'S' : ''}
             </div>
 
             {/* Subtle glow effect */}
@@ -164,7 +164,7 @@ function Page1() {
             className="py-3"
             style={{ width: "12rem" }}
             onClick={handleDraw}
-            disabled={isRolling || eligibleParticipants.length < 7}
+            disabled={isRolling || eligibleParticipants.length < winnerCount}
           />
         </div>
       )}
