@@ -27,7 +27,7 @@ function HomePage() {
 
   return (
     <div
-      className="flex flex-column h-screen w-full align-items-center py-3 relative"
+      className="flex flex-column h-screen w-full align-items-center py-3 relative select-none"
       style={{
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: "cover",

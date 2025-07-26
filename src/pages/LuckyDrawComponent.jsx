@@ -97,7 +97,7 @@ function LuckyDrawComponent({
   };
 
   return (
-    <div className="flex flex-column flex-1 h-full py-4">
+    <div className="flex flex-column flex-1 h-full py-4 select-none">
       {/* Enhanced Item/prizes section */}
       <div className="flex justify-content-center mb-3">
         <div className="flex flex-column align-items-center">

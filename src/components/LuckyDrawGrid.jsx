@@ -10,7 +10,7 @@ function LuckyDrawGrid({ names = [], cardCount = 7 }) {
       paddingLeft:"10%"
     }}>
       {displayNames.map((name, index) => (
-        <div className="col-3 flex justify-content-center h-7rem" key={index}>
+        <div className="col-3 flex justify-content-center h-7rem select-none" key={index}>
           <div
             className={`flex flex-1 justify-content-center align-items-center border-round-xl font-bold relative overflow-hidden`}
             style={{
@@ -33,7 +33,7 @@ function LuckyDrawGrid({ names = [], cardCount = 7 }) {
             
             {/* Name text with enhanced styling */}
             <div 
-              className="flex text-center relative z-1"
+              className="flex text-center relative z-1 select-none"
               style={{
                 background: 'linear-gradient(45deg, #ffd700, #ffed4e, #ffd700)',
                 WebkitBackgroundClip: 'text',

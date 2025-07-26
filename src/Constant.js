@@ -18,8 +18,8 @@ export const PAGES_CONFIG = [
   { path: "/prize/17", winnerCount: 1, prizeName: "Momoda Eye Massager" },
   { path: "/prize/18", winnerCount: 1, prizeName: "Perry Smith Cordless Handheld Vacuum Cleaner (Xtreme K2Pro)" },
   { path: "/prize/19", winnerCount: 1, prizeName: "TBC (Panta Agency)" },
-  { path: "/prize/20", winnerCount: 2, prizeName: "Travel voucher worth (RM1,133)" },
-  { path: "/prize/21", winnerCount: 1, prizeName: "LV Card Holder" },
+  { path: "/prize/20", winnerCount: 2, prizeName: "CIT Travel Voucher (RM1,133) ", prizeType: "SECOND PRIZE : " },
+  { path: "/prize/21", winnerCount: 1, prizeName: "LV Card Holder", prizeType: "TOP PRIZE : " },
 ];
 
 export const initialParticipants = [
