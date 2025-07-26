@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { startDraw, setWinner } from "../redux/slices/participantsSlice.jsx";
 import LuckyDrawGrid from "../components/LuckyDrawGrid.jsx";
 
-function Page1({ winnerCount = 1, prizeName = "PRIZE" }) {
+function Page1({ winnerCount = 7, prizeName = "PRIZE NAME" }) {
   const dispatch = useDispatch();
   const { eligibleParticipants, currentDraw } = useSelector(
     (state) => state.participants
@@ -87,7 +87,7 @@ function Page1({ winnerCount = 1, prizeName = "PRIZE" }) {
   return (
     <div className="flex flex-column flex-1 h-full py-4">
       {/* Enhanced Item/prizes section */}
-      <div className="flex justify-content-center mt-6 mb-2">
+      <div className="flex justify-content-center mb-3">
         <div className="flex flex-column align-items-center">
           <div
             className="p-6 border-round-xl"
@@ -101,7 +101,7 @@ function Page1({ winnerCount = 1, prizeName = "PRIZE" }) {
             }}
           >
             <div
-              className="text-5xl font-bold text-center relative z-1"
+              className="text-5xl font-bold text-center relative z-1 capitalize"
               style={{
                 background: "linear-gradient(45deg, #ffd700, #ffed4e, #ffd700)",
                 WebkitBackgroundClip: "text",
@@ -152,34 +152,34 @@ function Page1({ winnerCount = 1, prizeName = "PRIZE" }) {
       </div>
 
       {/* Lucky Draw Grid */}
-      <div className="flex justify-content-center mt-8">
+      <div className="flex justify-content-center">
         <LuckyDrawGrid names={rollingNames} cardCount={rollingNames.length} />
       </div>
 
       {/* Draw button */}
       {finalWinners.length === 0 && (
-        <div className="flex justify-content-center mt-auto mb-8">
+        <div className="flex justify-content-center mt-auto mb-3">
           <Button
             label={isRolling ? "Drawing..." : "Draw"}
             className="py-3"
-            style={{ width: "12rem" }}
+            style={{ 
+              width: "12rem",
+              background: "linear-gradient(135deg, #ffd700, #ffed4e, #ffd700)",
+              border: "2px solid #ffd700",
+              borderRadius: "12px",
+              color: "#1a1a1a",
+              fontWeight: "700",
+              fontSize: "1.1rem",
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              boxShadow: "0 8px 25px rgba(255, 215, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)",
+              transition: "all 0.3s ease-in-out",
+              position: "relative",
+              overflow: "hidden"
+            }}
             onClick={handleDraw}
             disabled={isRolling || eligibleParticipants.length < winnerCount}
           />
-        </div>
-      )}
-
-      {/* Show winners count */}
-      {finalWinners.length > 0 && (
-        <div className="flex justify-content-center">
-          <div className="bg-green-100 border-green-500 border-2 border-round p-3 text-center">
-            <div className="font-bold text-lg text-green-800">
-              🎉 Congratulations! 🎉
-            </div>
-            <div className="text-sm">
-              Please collect your prize on the stage now!
-            </div>
-          </div>
         </div>
       )}
     </div>

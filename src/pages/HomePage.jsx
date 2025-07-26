@@ -13,12 +13,12 @@ function HomePage() {
       }}
     >
       {/* //image container */}
-      <div style={{ width: "20rem", maxHeight: "7rem" }}>
-        <img src={logo} className="w-full h-full mb-2" alt="logo" />
+      <div className="mb-3" style={{ width: "20rem", maxHeight: "7rem" }}>
+        <img src={logo} className="w-full h-full" alt="logo" />
       </div>
       {/* title */}
       <div
-        className="text-5xl font-medium mb-2"
+        className="text-4xl font-medium mb-2 text-white"
         style={{ fontFamily: '"Playfair Display", "Times New Roman", serif' }}
       >
         ANNUAL DINNER LUCKY DRAW

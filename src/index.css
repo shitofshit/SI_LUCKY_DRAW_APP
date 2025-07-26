@@ -22,4 +22,30 @@ html, body, #root {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Enhanced button hover effects */
+.p-button:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(255, 215, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  background: linear-gradient(135deg, #ffed4e, #ffd700, #ffed4e) !important;
+}
+
+.p-button:active:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
+}
+
+.p-button:disabled {
+  background: linear-gradient(135deg, #666, #888, #666) !important;
+  border-color: #666 !important;
+  color: #999 !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+  cursor: not-allowed;
+}
+
+/* Button focus state */
+.p-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3), 0 8px 25px rgba(255, 215, 0, 0.4);
+}
+
 

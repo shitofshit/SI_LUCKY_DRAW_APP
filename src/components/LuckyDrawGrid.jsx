@@ -6,8 +6,8 @@ function LuckyDrawGrid({ names = [], cardCount = 7 }) {
 
   return (
     <div className={`justify-content-center grid flex align-items-center m-0 flex-1`} style={{
-      paddingRight:"20%",
-      paddingLeft:"20%"
+      paddingRight:"10%",
+      paddingLeft:"10%"
     }}>
       {displayNames.map((name, index) => (
         <div className="col-3 flex justify-content-center h-7rem" key={index}>
