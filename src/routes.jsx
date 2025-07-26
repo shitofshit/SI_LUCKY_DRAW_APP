@@ -18,6 +18,7 @@ function AppRoutes() {
               <LuckyDrawComponent 
                 winnerCount={page.winnerCount} 
                 prizeName={page.prizeName}
+                prizeType={page.prizeType}
               />
             }
           />

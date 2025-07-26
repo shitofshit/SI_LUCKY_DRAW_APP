@@ -4,7 +4,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { startDraw, setWinner } from "../redux/slices/participantsSlice.jsx";
 import LuckyDrawGrid from "../components/LuckyDrawGrid.jsx";
 
-function LuckyDrawComponent({ winnerCount = 7, prizeName = "PRIZE NAME" }) {
+function LuckyDrawComponent({
+  winnerCount = 7,
+  prizeName = "PRIZE NAME",
+  prizeType = null,
+}) {
   const dispatch = useDispatch();
   const { eligibleParticipants, currentDraw } = useSelector(
     (state) => state.participants
@@ -18,14 +22,16 @@ function LuckyDrawComponent({ winnerCount = 7, prizeName = "PRIZE NAME" }) {
   useEffect(() => {
     setRollingNames(Array(winnerCount));
     setFinalWinners([]); // Also reset winners when changing pages
-  }, [winnerCount]);
+  }, [prizeName, winnerCount]);
 
   // Function to get different random participants for rolling
   const getRandomParticipants = () => {
     if (eligibleParticipants.length < winnerCount) {
       const available = [...eligibleParticipants];
       while (available.length < winnerCount) {
-        available.push(...eligibleParticipants.slice(0, winnerCount - available.length));
+        available.push(
+          ...eligibleParticipants.slice(0, winnerCount - available.length)
+        );
       }
       return available.slice(0, winnerCount).map((p) => p.name);
     }
@@ -107,7 +113,7 @@ function LuckyDrawComponent({ winnerCount = 7, prizeName = "PRIZE NAME" }) {
             }}
           >
             <div
-              className="text-5xl font-bold text-center relative z-1 capitalize"
+              className="text-5xl font-bold text-center relative z-1 lower-case capitalize"
               style={{
                 background: "linear-gradient(45deg, #ffd700, #ffed4e, #ffd700)",
                 WebkitBackgroundClip: "text",
@@ -119,6 +125,7 @@ function LuckyDrawComponent({ winnerCount = 7, prizeName = "PRIZE NAME" }) {
                 filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.3))",
               }}
             >
+              {prizeType && prizeType}
               {prizeName}
             </div>
 
@@ -142,7 +149,7 @@ function LuckyDrawComponent({ winnerCount = 7, prizeName = "PRIZE NAME" }) {
                 fontWeight: "600",
               }}
             >
-              {winnerCount} LUCKY WINNER{winnerCount > 1 ? 'S' : ''}
+              {winnerCount} LUCKY WINNER{winnerCount > 1 ? "S" : ""}
             </div>
 
             {/* Subtle glow effect */}
@@ -168,7 +175,7 @@ function LuckyDrawComponent({ winnerCount = 7, prizeName = "PRIZE NAME" }) {
           <Button
             label={isRolling ? "Drawing..." : "Draw"}
             className="py-3"
-            style={{ 
+            style={{
               width: "12rem",
               background: "linear-gradient(135deg, #ffd700, #ffed4e, #ffd700)",
               border: "2px solid #ffd700",
@@ -178,10 +185,11 @@ function LuckyDrawComponent({ winnerCount = 7, prizeName = "PRIZE NAME" }) {
               fontSize: "1.1rem",
               letterSpacing: "0.1em",
               textTransform: "uppercase",
-              boxShadow: "0 8px 25px rgba(255, 215, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)",
+              boxShadow:
+                "0 8px 25px rgba(255, 215, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)",
               transition: "all 0.3s ease-in-out",
               position: "relative",
-              overflow: "hidden"
+              overflow: "hidden",
             }}
             onClick={handleDraw}
             disabled={isRolling || eligibleParticipants.length < winnerCount}
