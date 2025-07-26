@@ -86,24 +86,67 @@ function Page1() {
 
   return (
     <div className="flex flex-column flex-1 h-full py-4">
-      {/* Item/prizes */}
-      <div className="flex justify-content-center mb-6">
-        <div className="flex flex-column align-items-center p-4">
+      {/* Enhanced Item/prizes section */}
+      <div className="flex justify-content-center mt-6 mb-2">
+        <div className="flex flex-column align-items-center">
           <div
-            className="text-4xl font-bold text-yellow-300 text-center"
+            className="p-6 border-round-xl"
             style={{
-              textShadow: "3px 3px 0px #b8860b, 6px 6px 0px rgba(0,0,0,0.3)",
-              WebkitTextStroke: "2px #ffd700",
-              letterSpacing: "0.1em",
+              background:
+                "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%)",
+              boxShadow:
+                "0 8px 32px rgba(255, 215, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
+              position: "relative",
+              overflow: "hidden",
             }}
           >
-            LV BAG
-          </div>
-          <div
-            className="text-lg text-yellow-400 mt-2"
-            style={{ letterSpacing: "0.2em" }}
-          >
-            7 LUCKY WINNERS
+            <div
+              className="text-5xl font-bold text-center relative z-1"
+              style={{
+                background: "linear-gradient(45deg, #ffd700, #ffed4e, #ffd700)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                textShadow: "0 0 30px rgba(255, 215, 0, 0.5)",
+                letterSpacing: "0.15em",
+                fontWeight: "900",
+                filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.3))",
+              }}
+            >
+              LV BAG
+            </div>
+
+            <div
+              className="my-3"
+              style={{
+                height: "2px",
+                background:
+                  "linear-gradient(90deg, transparent, #ffd700, transparent)",
+                borderRadius: "1px",
+              }}
+            />
+
+            <div
+              className="text-xl text-center font-semibold"
+              style={{
+                color: "#ffed4e",
+                letterSpacing: "0.3em",
+                textTransform: "uppercase",
+                textShadow: "0 2px 4px rgba(0,0,0,0.5)",
+                fontWeight: "600",
+              }}
+            >
+              7 LUCKY WINNERS
+            </div>
+
+            {/* Subtle glow effect */}
+            <div
+              className="absolute inset-0 border-round-xl"
+              style={{
+                boxShadow: "inset 0 0 20px rgba(255, 215, 0, 0.1)",
+                pointerEvents: "none",
+              }}
+            />
           </div>
         </div>
       </div>

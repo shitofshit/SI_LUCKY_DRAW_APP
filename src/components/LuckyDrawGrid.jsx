@@ -12,13 +12,39 @@ function LuckyDrawGrid({ names = [], cardCount = 7 }) {
       {displayNames.map((name, index) => (
         <div className="col-3 flex justify-content-center h-7rem" key={index}>
           <div
-            className={`flex flex-1 justify-content-center align-items-center border-3 border-round font-bold text-900 bg-white`}
+            className={`flex flex-1 justify-content-center align-items-center border-round-xl font-bold relative overflow-hidden`}
             style={{
-              transition: "all 0.1s ease-in-out",
+              background: 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%)',
+              border: '2px solid #ffd700',
+              boxShadow: '0 8px 32px rgba(255, 215, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+              transition: "all 0.3s ease-in-out",
               fontSize: name.length > 20 ? "0.7rem" : "0.9rem",
+              position: 'relative'
             }}
           >
-            <div className="flex text-center">{name}</div>
+            {/* Subtle glow effect */}
+            <div 
+              className="absolute inset-0 border-round-xl"
+              style={{
+                boxShadow: 'inset 0 0 20px rgba(255, 215, 0, 0.1)',
+                pointerEvents: 'none'
+              }}
+            />
+            
+            {/* Name text with enhanced styling */}
+            <div 
+              className="flex text-center relative z-1"
+              style={{
+                background: 'linear-gradient(45deg, #ffd700, #ffed4e, #ffd700)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                textShadow: '0 0 20px rgba(255, 215, 0, 0.3)',
+                fontWeight: '700'
+              }}
+            >
+              {name}
+            </div>
           </div>
         </div>
       ))}
