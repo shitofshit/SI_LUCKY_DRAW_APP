@@ -18,7 +18,7 @@ function LuckyDrawGrid({ names = [], cardCount = 7 }) {
               border: '2px solid #ffd700',
               boxShadow: '0 8px 32px rgba(255, 215, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
               transition: "all 0.3s ease-in-out",
-              fontSize: name.length > 20 ? "0.7rem" : "0.9rem",
+              fontSize: name.length > 20 ? "1rem" : "1.2rem",
               position: 'relative'
             }}
           >
@@ -40,7 +40,7 @@ function LuckyDrawGrid({ names = [], cardCount = 7 }) {
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
                 textShadow: '0 0 20px rgba(255, 215, 0, 0.3)',
-                fontWeight: '700'
+                fontWeight: '900'
               }}
             >
               {name}

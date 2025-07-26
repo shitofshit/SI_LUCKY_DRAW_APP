@@ -90,7 +90,7 @@ function LuckyDrawComponent({
 
         // Update Redux state for each winner
         winners.forEach((winner) => {
-          dispatch(setWinner(winner));
+          dispatch(setWinner({ winner, prizeName }));
         });
       }, 2000);
     }, 1000);
