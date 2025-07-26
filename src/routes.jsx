@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./pages/HomePage.jsx";
-import Page1 from "./pages/Page1.jsx";
-import Page2 from "./pages/Page2.jsx";
+import LuckyDrawComponent from "./pages/LuckyDrawComponent.jsx";
+import { PAGES_CONFIG } from "./Constant.js";
 
 function AppRoutes() {
   return (
@@ -10,8 +10,18 @@ function AppRoutes() {
       <Route path="/" element={<HomePage />}>
         <Route index element={<Navigate to="/prize/1" replace />} />
 
-        <Route path="/prize/1" element={<Page1 />} />
-        <Route path="/prize/2" element={<Page2 />} />
+        {PAGES_CONFIG.map((page, index) => (
+          <Route
+            key={page.path}
+            path={page.path}
+            element={
+              <LuckyDrawComponent 
+                winnerCount={page.winnerCount} 
+                prizeName={page.prizeName}
+              />
+            }
+          />
+        ))}
       </Route>
 
       {/* 404 page - catch all unmatched routes */}

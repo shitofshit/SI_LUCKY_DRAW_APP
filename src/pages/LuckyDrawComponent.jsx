@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { startDraw, setWinner } from "../redux/slices/participantsSlice.jsx";
 import LuckyDrawGrid from "../components/LuckyDrawGrid.jsx";
 
-function Page1({ winnerCount = 7, prizeName = "PRIZE NAME" }) {
+function LuckyDrawComponent({ winnerCount = 7, prizeName = "PRIZE NAME" }) {
   const dispatch = useDispatch();
   const { eligibleParticipants, currentDraw } = useSelector(
     (state) => state.participants
@@ -13,6 +13,12 @@ function Page1({ winnerCount = 7, prizeName = "PRIZE NAME" }) {
   const [rollingNames, setRollingNames] = useState(Array(winnerCount));
   const [isRolling, setIsRolling] = useState(false);
   const [finalWinners, setFinalWinners] = useState([]);
+
+  // Reset rollingNames when winnerCount changes
+  useEffect(() => {
+    setRollingNames(Array(winnerCount));
+    setFinalWinners([]); // Also reset winners when changing pages
+  }, [winnerCount]);
 
   // Function to get different random participants for rolling
   const getRandomParticipants = () => {
@@ -186,4 +192,4 @@ function Page1({ winnerCount = 7, prizeName = "PRIZE NAME" }) {
   );
 }
 
-export default Page1;
+export default LuckyDrawComponent;

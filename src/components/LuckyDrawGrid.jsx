@@ -1,7 +1,7 @@
 function LuckyDrawGrid({ names = [], cardCount = 7 }) {
   // Fill arrays to match cardCount
   const displayNames = Array(cardCount)
-    .fill("LUCKY WINNERS")
+    .fill("? ? ?")
     .map((defaultName, index) => names[index] || defaultName);
 
   return (
