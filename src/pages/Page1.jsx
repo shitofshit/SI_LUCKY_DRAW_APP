@@ -10,7 +10,7 @@ function Page1() {
     (state) => state.participants
   );
 
-  const [rollingNames, setRollingNames] = useState(Array(7).fill("LUCKY DRAW"));
+  const [rollingNames, setRollingNames] = useState(Array(7));
   const [isRolling, setIsRolling] = useState(false);
   const [finalWinners, setFinalWinners] = useState([]);
 
@@ -81,7 +81,7 @@ function Page1() {
           dispatch(setWinner(winner));
         });
       }, 2000);
-    }, 3000);
+    }, 1000);
   };
 
   return (
@@ -109,13 +109,13 @@ function Page1() {
       </div>
 
       {/* Lucky Draw Grid */}
-      <div className="flex flex-1 justify-content-center align-items-start">
+      <div className="flex justify-content-center mt-8">
         <LuckyDrawGrid names={rollingNames} cardCount={rollingNames.length} />
       </div>
 
       {/* Draw button */}
       {finalWinners.length === 0 && (
-        <div className="flex justify-content-center">
+        <div className="flex justify-content-center mt-auto mb-8">
           <Button
             label={isRolling ? "Drawing..." : "Draw"}
             className="py-3"
