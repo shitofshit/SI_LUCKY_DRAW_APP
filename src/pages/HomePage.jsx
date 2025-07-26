@@ -1,16 +1,19 @@
 import { Outlet } from "react-router-dom";
 import logo from "../assets/SI_LOGO.png";
+import backgroundImage from "../assets/BACKGROUND_IMG.jpg";
 
 function HomePage() {
   return (
     <div
       className="flex flex-column h-screen w-full align-items-center py-3"
-      style={{}}
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
     >
       {/* //image container */}
-      <div
-        style={{ width: "16rem", maxHeight: "7rem" }}
-      >
+      <div style={{ width: "20rem", maxHeight: "7rem" }}>
         <img src={logo} className="w-full h-full mb-2" alt="logo" />
       </div>
       {/* title */}
@@ -23,7 +26,7 @@ function HomePage() {
 
       {/* Outlet for the lucky draw pages */}
       <div className="flex flex-1 w-full">
-      <Outlet />
+        <Outlet />
       </div>
     </div>
   );
