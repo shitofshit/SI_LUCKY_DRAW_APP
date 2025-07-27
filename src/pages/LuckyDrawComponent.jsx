@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "primereact/button";
 import { useSelector, useDispatch } from "react-redux";
 import { startDraw, setWinner } from "../redux/slices/participantsSlice.jsx";
 import LuckyDrawGrid from "../components/LuckyDrawGrid.jsx";
+import luckyDrawSound from "../assets/lucky-draw.wav";
 
 function LuckyDrawComponent({
   winnerCount = 7,
@@ -17,12 +18,33 @@ function LuckyDrawComponent({
   const [rollingNames, setRollingNames] = useState(Array(winnerCount));
   const [isRolling, setIsRolling] = useState(false);
   const [finalWinners, setFinalWinners] = useState([]);
+  
+  // Add audio ref for drum roll sound
+  const audioRef = useRef(null);
 
   // Reset rollingNames when winnerCount changes
   useEffect(() => {
     setRollingNames(Array(winnerCount));
     setFinalWinners([]); // Also reset winners when changing pages
   }, [prizeName, winnerCount]);
+
+  // Function to play drum roll sound
+  const playDrumRoll = () => {
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0;
+      audioRef.current.volume = 0.7;
+      audioRef.current.playbackRate = 0.9;
+      audioRef.current.play().catch(e => console.log('Audio play failed:', e));
+    }
+  };
+
+  // Function to stop drum roll
+  const stopDrumRoll = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
+  };
 
   // Function to get different random participants for rolling
   const getRandomParticipants = () => {
@@ -64,6 +86,9 @@ function LuckyDrawComponent({
     dispatch(startDraw({ drawId: Date.now() }));
     setIsRolling(true);
     setFinalWinners([]);
+    
+    // Start drum roll sound
+    playDrumRoll();
 
     // Rolling phase - show random names for 3 seconds
     setTimeout(() => {
@@ -76,6 +101,9 @@ function LuckyDrawComponent({
       setTimeout(() => {
         clearInterval(slowInterval);
         setIsRolling(false);
+        
+        // Stop drum roll sound
+        stopDrumRoll();
 
         // Select different winners
         const shuffled = [...eligibleParticipants].sort(
@@ -98,6 +126,14 @@ function LuckyDrawComponent({
 
   return (
     <div className="flex flex-column flex-1 h-full py-4 select-none">
+      {/* Audio element for drum roll sound */}
+      <audio 
+        ref={audioRef}
+        src={luckyDrawSound}
+        preload="auto"
+        style={{ display: 'none' }}
+      />
+
       {/* Enhanced Item/prizes section */}
       <div className="flex justify-content-center mb-3">
         <div className="flex flex-column align-items-center">
