@@ -32,17 +32,9 @@ function LuckyDrawComponent({
   const playDrumRoll = () => {
     if (audioRef.current) {
       audioRef.current.currentTime = 0;
-      audioRef.current.volume = 0.7;
+      audioRef.current.volume = 1;
       audioRef.current.playbackRate = 0.9;
       audioRef.current.play().catch(e => console.log('Audio play failed:', e));
-    }
-  };
-
-  // Function to stop drum roll
-  const stopDrumRoll = () => {
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
     }
   };
 
@@ -102,8 +94,6 @@ function LuckyDrawComponent({
         clearInterval(slowInterval);
         setIsRolling(false);
         
-        // Stop drum roll sound
-        stopDrumRoll();
 
         // Select different winners
         const shuffled = [...eligibleParticipants].sort(
